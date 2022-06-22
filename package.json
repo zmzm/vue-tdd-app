@@ -2,18 +2,29 @@
   "name": "vue-tdd-app",
   "version": "1.0.0",
   "private": false,
-  "author": "Vladislav Kovalskij",
-  "license": "MIT",
+  "author": {
+    "name": "Vladislav Kovalskij"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "",
+    "lint": "vue-cli-service lint"
+  },
   "dependencies": {
+    "core-js": "^3.8.3",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.12.16",
     "@babel/node": "^7.18.5",
     "@babel/plugin-transform-runtime": "^7.18.5",
     "@babel/preset-env": "^7.18.2",
-    "@vue/cli": "5.0.6",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.18.0",
@@ -23,29 +34,5 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^9.1.1",
     "prettier": "^2.7.1"
-  },
-  "scripts": {
-    "serve": "",
-    "build": "",
-    "lint": "",
-    "test:unit": ""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
