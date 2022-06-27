@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils';
 
 import UserView from '@/views/UserView';
-import VUserSearchForm from '@/components/VUserSearchForm'
-import VUserProfile from '@/components/VUserProfile'
+import UserSearchForm from '@/components/UserSearchForm'
+import UserProfile from '@/components/UserProfile'
 
 describe('UserView', () => {
   it('renders the component', () => {
@@ -16,8 +16,8 @@ describe('UserView', () => {
   it('renders main child components', () => {
     // arrange
     const wrapper = shallowMount(UserView)
-    const userSearchForm = wrapper.find(VUserSearchForm)
-    const userProfile = wrapper.find(VUserProfile)
+    const userSearchForm = wrapper.findComponent(UserSearchForm)
+    const userProfile = wrapper.findComponent(UserProfile)
 
     // assert
     expect(userSearchForm.exists()).toBe(true)

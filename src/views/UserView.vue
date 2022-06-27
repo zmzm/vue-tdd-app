@@ -1,11 +1,19 @@
 <script>
+import UserSearchForm from '@/components/UserSearchForm';
+import UserProfile from '@/components/UserProfile';
+
 export default {
-  name: 'UserView'
-}
+  name: 'UserView',
+  components: {
+    UserSearchForm,
+    UserProfile,
+  }
+};
 </script>
 
 <template>
   <div>
-    UserView
+    <UserSearchForm />
+    <UserProfile />
   </div>
 </template>
