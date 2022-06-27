@@ -3,6 +3,6 @@
 exports[`UserView renders the component 1`] = `
 <div>
   <user-search-form-stub></user-search-form-stub>
-  <user-profile-stub></user-profile-stub>
+  <user-profile-stub user="[object Object]"></user-profile-stub>
 </div>
 `;

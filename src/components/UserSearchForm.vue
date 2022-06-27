@@ -1,11 +1,9 @@
 <script>
 export default {
-  name: 'UserSearchForm'
-}
+  name: 'UserSearchForm',
+};
 </script>
 
 <template>
-  <div>
-    UserSearchForm
-  </div>
+  <div>UserSearchForm</div>
 </template>
