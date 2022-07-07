@@ -1,23 +1,23 @@
-import Vuex, { nextTick } from 'vue';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { createStore } from 'vuex';
+import { shallowMount } from '@vue/test-utils';
 
 import UserView from '@/views/UserView';
 import UserSearchForm from '@/components/UserSearchForm';
 import UserProfile from '@/components/UserProfile';
-import initialState from '@/store/state';
 
 import userFixture from '../fixtures/userFixture';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
 describe('UserView', () => {
-  let state;
-
-  const build = () => {
+  const build = (state = {}) => {
+    const store = createStore({
+      state() {
+        return state;
+      },
+    });
     const wrapper = shallowMount(UserView, {
-      localVue,
-      store: new Vuex.Store({ state }),
+      global: {
+        plugins: [store],
+      },
     });
 
     return {
@@ -26,10 +26,6 @@ describe('UserView', () => {
       userProfile: () => wrapper.findComponent(UserProfile),
     };
   };
-
-  beforeEach(() => {
-    state = { ...initialState };
-  });
 
   it('renders the component', () => {
     // arrange
@@ -47,28 +43,11 @@ describe('UserView', () => {
     expect(userProfile().exists()).toBe(true);
   });
 
-  it('passes a binded user prop to user profile component', async () => {
-    // arrange
-    const { wrapper, userProfile } = build();
-
-    wrapper.setData({
-      user: {
-        name: 'Daniel',
-      },
-    });
-
-    await nextTick();
-
-    // assert
-    expect(userProfile().vm.user).toBe(wrapper.vm.user);
-  });
-
   it('passes a binded user prop to user profile component', () => {
     // arrange
-    state.user = userFixture;
-    const { userProfile } = build();
+    const { userProfile } = build({ user: userFixture });
 
     // assert
-    expect(userProfile().vm.user).toBe(state.user);
+    expect(userProfile().vm.user).toStrictEqual(userFixture);
   });
 });

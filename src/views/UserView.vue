@@ -1,4 +1,6 @@
 <script>
+import { mapState } from 'vuex';
+
 import UserSearchForm from '@/components/UserSearchForm';
 import UserProfile from '@/components/UserProfile';
 
@@ -8,10 +10,10 @@ export default {
     UserSearchForm,
     UserProfile,
   },
-  data() {
-    return {
-      user: { name: '' },
-    };
+  computed: {
+    ...mapState({
+      user: 'user',
+    }),
   },
 };
 </script>
