@@ -1,16 +1,23 @@
-import { nextTick } from 'vue';
-import { shallowMount } from '@vue/test-utils';
+import Vuex, { nextTick } from 'vue';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 
 import UserView from '@/views/UserView';
 import UserSearchForm from '@/components/UserSearchForm';
 import UserProfile from '@/components/UserProfile';
+import initialState from '@/store/state';
+
+import userFixture from '../fixtures/userFixture';
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe('UserView', () => {
+  let state;
+
   const build = () => {
     const wrapper = shallowMount(UserView, {
-      data: () => ({
-        user: {},
-      }),
+      localVue,
+      store: new Vuex.Store({ state }),
     });
 
     return {
@@ -19,6 +26,10 @@ describe('UserView', () => {
       userProfile: () => wrapper.findComponent(UserProfile),
     };
   };
+
+  beforeEach(() => {
+    state = { ...initialState };
+  });
 
   it('renders the component', () => {
     // arrange
@@ -50,5 +61,14 @@ describe('UserView', () => {
 
     // assert
     expect(userProfile().vm.user).toBe(wrapper.vm.user);
+  });
+
+  it('passes a binded user prop to user profile component', () => {
+    // arrange
+    state.user = userFixture;
+    const { userProfile } = build();
+
+    // assert
+    expect(userProfile().vm.user).toBe(state.user);
   });
 });
