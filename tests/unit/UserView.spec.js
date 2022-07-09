@@ -4,11 +4,14 @@ import { shallowMount } from '@vue/test-utils';
 import UserView from '@/views/UserView';
 import UserSearchForm from '@/components/UserSearchForm';
 import UserProfile from '@/components/UserProfile';
+import initialState from '@/store/state';
 
 import userFixture from '../fixtures/userFixture';
 
 describe('UserView', () => {
-  const build = (state = {}) => {
+  let state = {};
+
+  const build = () => {
     const store = createStore({
       state() {
         return state;
@@ -26,6 +29,10 @@ describe('UserView', () => {
       userProfile: () => wrapper.findComponent(UserProfile),
     };
   };
+
+  beforeEach(() => {
+    state = { ...initialState };
+  });
 
   it('renders the component', () => {
     // arrange
@@ -45,9 +52,10 @@ describe('UserView', () => {
 
   it('passes a binded user prop to user profile component', () => {
     // arrange
-    const { userProfile } = build({ user: userFixture });
+    state.user = userFixture;
+    const { userProfile } = build();
 
     // assert
-    expect(userProfile().vm.user).toStrictEqual(userFixture);
+    expect(userProfile().vm.user).toStrictEqual(state.user);
   });
 });
