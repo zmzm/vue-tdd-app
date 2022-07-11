@@ -10,6 +10,11 @@ export default {
     UserSearchForm,
     UserProfile,
   },
+  methods: {
+    searchUser(username) {
+      this.$store.dispatch('SEARCH_USER', { username });
+    },
+  },
   computed: {
     ...mapState({
       user: 'user',
@@ -20,7 +25,7 @@ export default {
 
 <template>
   <div>
-    <UserSearchForm />
+    <UserSearchForm @submitted="searchUser" />
     <UserProfile :user="user" />
   </div>
 </template>

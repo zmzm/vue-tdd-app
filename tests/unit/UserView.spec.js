@@ -1,3 +1,5 @@
+jest.mock('@/store/actions');
+
 import { createStore } from 'vuex';
 import { shallowMount } from '@vue/test-utils';
 
