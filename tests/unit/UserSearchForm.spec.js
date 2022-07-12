@@ -31,4 +31,19 @@ describe('UserSearchForm', () => {
     expect(input().exists()).toBe(true);
     expect(button().exists()).toBe(true);
   });
+
+  it('calls "submitted" event when submitting form', () => {
+    // arrange
+    const expectedUser = 'vlad';
+    const { wrapper, button, input } = build();
+    input().element.value = expectedUser;
+
+    // act
+    input().trigger('input');
+    button().trigger('click');
+    button().trigger('submit');
+
+    // assert
+    expect(wrapper.emitted().submitted[0]).toEqual([expectedUser]);
+  });
 });
