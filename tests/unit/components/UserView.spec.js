@@ -10,7 +10,7 @@ import UserProfile from '@/components/UserProfile';
 import initialState from '@/store/state';
 import actions from '@/store/actions';
 
-import userFixture from '../fixtures/userFixture';
+import userFixture from '../../fixtures/userFixture';
 
 describe('UserView', () => {
   let state = {};

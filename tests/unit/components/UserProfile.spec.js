@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 
 import UserProfile from '@/components/UserProfile';
 
-import userFixture from '../fixtures/userFixture';
+import userFixture from '../../fixtures/userFixture';
 
 describe('UserProfile', () => {
   let props = {};
